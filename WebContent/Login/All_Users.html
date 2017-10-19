@@ -1,0 +1,33 @@
+<div class="container" ng-controller="UserController as ctrl">
+	
+	<div class="form-group has-feedback"></div>
+
+  Search
+
+  <p><input type="text" ng-model="sear_text"></p>
+
+
+	<div ng-repeat="user in ctrl.users | filter: sear_text">
+
+		<fieldset>
+			<legend>ALL USERS</legend>
+
+			<p>ID: {{user.id}} &nbsp; &nbsp;&nbsp; Name:<h3><b>{{user.name}}</b></h3>
+			     
+			    
+			     <button type="button" 
+			        ng-click="ctrl.accept(user.id)" 
+			       class="btn btn-success btn-sm">ACCEPT</button>
+			       
+			        <button type="button" 
+			        ng-click="ctrl.reject(user.id)" 
+			       class="btn btn-danger btn-sm">REJECT</button>
+			  </p>
+
+			<p>Email: <!-- {{user.email}} --> &nbsp; &nbsp;&nbsp; Mobile:{{user.mobile}}</p>
+
+			<p> Address:{{user.address}} &nbsp; &nbsp;&nbsp; Role :{{user.role}}</p>
+		</fieldset>
+	</div>
+
+</div>

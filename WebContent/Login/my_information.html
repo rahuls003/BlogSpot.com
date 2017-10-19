@@ -1,0 +1,49 @@
+
+<body ng-controller="UserController as ctrl">
+
+		<h3> USER PROFILE </h3>	
+			
+			
+			 <form method="POST" enctype="multipart/form-data"
+            action="http://localhost:9002/ZChatBackEnd/upload">
+             Enter Name : <input type="text" name="fileName"><br/>
+             
+             File to upload:<input type="file" name="uploadedFile">
+             <br>
+             <input type="submit" value="upload">
+             </form>
+			
+			
+<div class="container">         
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PASSWORD</th>
+        <th>ROLE</th>
+        <th>MOBILE</th>
+        <th>ADDRESS</th>
+        <th>STATUS</th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{currentUser.id}}</td>
+        <td>{{currentUser.name}}</td>
+        <td>{{currentUser.password}}</td>
+        <td>{{currentUser.role}}</td>
+        <td>{{currentUser.mobile}}</td>
+        <td>{{currentUser.address}}</td>
+        <td>{{currentUser.status}}</td>
+        <td><a href="#!/editUser"><span class="glyphicon glyphicon-pencil"></span></a></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <a href="#" class="btn btn-info" role="button">Home</a>
+  
+</div>
+
+</body>

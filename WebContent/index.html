@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+		
+		<script src="lib/angular.js"></script>
+		<script src="lib/angular-route.js"></script>
+		
+		<script
+			src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.min.js"></script>
+		
+		<meta 
+		     name="viewport" content="width=device-width, initial-scale=1">
+		     
+		<link rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			
+		<link rel="stylesheet"
+			  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
+		
+		<style>
+				.fixed-panel {
+					min-height: 10;
+					max-height: 10;
+					overflow-y: scroll;
+							}
+			</style>
+		
+		
+		<script src="script.js"></script>
+		<script src="Login/UserController.js"></script>
+		<script src="Login/UserService.js"></script>
+		<script src="Job/JobController.js"></script>
+		<script src="Job/JobService.js"></script>
+		<script src="friend/FriendController.js"></script>
+		<script src="friend/FriendService.js"></script>
+
+<!-- Custom styles for our template -->
+<link rel="stylesheet" href="lib/main.css">
+
+</head>
+
+<body ng-app="RoutingApp" ng-controller="UserController as ctrl" >
+
+	<!---------------------NAVBAR----------------------->
+
+	<nav class="navbar navbar-custom ">
+		<div class="container">
+			<div class="navbar-header">
+
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+
+				<a class="navbar-brand" href="#">Bloggers Adda</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+				
+				<li><a ng-show="currentUser.role=='admin' && currentUser.name!==undefined" href="#!/all_users">ALL USERS</a>
+					</li>
+				
+					<li><a ng-show="currentUser.name==undefined" href="#!/login">LOGIN</a>
+					</li>
+					<li><a ng-show="currentUser.name==undefined"
+						href="#!/register">REGISTER</a></li>
+					<li><a ng-hide="currentUser.name==undefined"
+						href="#!/myInformation" style="color: black; font-size: 20px">WELCOME,
+							{{currentUser.name}}({{currentUser.role}}) </a></li>
+					<li><a href="#" ng-hide="currentUser.name==undefined"
+						ng-click="ctrl.logout()">LOGOUT</a></li>
+				</ul>
+
+
+				<ul class="nav navbar-nav">
+
+					<li class="dropdown"><a  class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Job<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#!/postjob">Add Job</a></li>
+							<li><a href="#!/listjob">All Jobs</a></li>
+							<li ng-hide="currentUser.name==undefined"><a href="#!/view_applied_jobs">List Applied Jobs</a></li>
+						 
+						 </ul></li>
+
+					<li class="dropdown"  ng-hide="currentUser.role==admin"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Friend<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">All Friend</a></li>
+							<li><a href="#!/search_friend">All Users</a></li>
+							<li><a href="#!/getfriendrequest">Get Friends Request</a></li>
+						</ul>
+					</li>
+
+					<!-- <li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Bulletin<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Add Event</a></li>
+							<li><a href="#">List Events</a></li>
+						</ul></li> -->
+
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Blog<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#!/addblogs">Add Blog</a></li>
+							<li><a href="#!/viewblogs">List Blogs</a></li>
+							<li><a href="#">Approve Blog</a></li>
+						</ul></li>
+
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Forum<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#!/addforum">Add Forum</a></li>
+							<li><a href="#!/viewforums">List Forums</a></li>
+							<li><a href="#">Approve Forum</a></li>
+						</ul></li>
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	
+	<!-- VERTICAL MENU	 -->
+	
+	
+	<!-- <div class="row "  >
+	<div class="col-sm-3">
+	<div class="vertical-menu"  ng-hide="currentUser.name==undefined">
+  <a href="#" class="active">Home</a>
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  <a href="#">Link 4</a>
+</div>
+	</div> -->
+	
+	
+	
+	
+	<!-- style="height:455px; -->
+<!-- <div class="col-sm-9"> -->
+	<div class="container" ">
+		<div class="jumbotran">
+			<div class="container">
+				<div ng-view></div>
+			</div>
+		</div>
+	</div>
+	
+<!-- </div> -->
+	
+	
+	<!---------------------PANELS----------------------->
+	<br><br>
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Blogs</h3>
+						</div>
+						<div class="panel-body fixed-panel"
+							style="text-align: justify; font-size: 15px; height: 200px;">
+							<marquee behavior="scroll" direction="up"
+								onmouseover="this.stop()" onmouseout="this.start()">
+								<div ng-controller="BlogController as ctrl">
+									<div ng-repeat="blog in blogdata">
+										<li><a href="#">{{blog.blogName}}-{{blog.blogContent}}</a></li>
+									</div>
+								</div>
+							</marquee>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="panel panel-primary ">
+						<div class="panel-heading">
+							<h3 class="panel-title">Bulletins</h3>
+						</div>
+						<div class="panel-body fixed-panel"
+							style="text-align: justify; font-size: 15px; height: 200px;">
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="panel panel-primary ">
+						<div class="panel-heading">
+							<h3 class="panel-title">Event</h3>
+						</div>
+						<div class="panel-body fixed-panel"
+							style="text-align: justify; font-size: 15px; height: 200px;">
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="panel panel-primary ">
+						<div class="panel-heading">
+							<h3 class="panel-title">Career</h3>
+						</div>
+						<div class="panel-body fixed-panel"
+							style="text-align: justify; font-size: 15px; height: 200px;">
+							<marquee behavior="scroll" direction="up"
+								onmouseover="this.stop()" onmouseout="this.start()">
+								<div ng-controller="JobController as ctrl">
+									<div ng-repeat="job in jobdata">
+										<li><a href="#">{{job.jobProfile}}-{{job.jobDesc}}</a></li>
+									</div>
+								</div>
+							</marquee>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+	
+	
+
+	<!------------------------------------FOOTER--------------------------------------->
+
+	<br>
+	<br>
+
+	<footer id="footer" class="top-space">
+	
+	<div class="footer1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Contact</h3>
+						<div class="widget-body">
+							<p>
+								+91 8527310627<br> <a href="mailto:#">rahulsaini0312@gmail.com</a><br>
+								<br>BLOGGERS ADDA LTD <br />B-19, Bloggers Adda Office
+								Building, <br /> Near M.G.Road, Gurugram<br /> Haryana
+							</p>
+						</div>
+					</div>
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Follow me</h3>
+						<div class="widget-body">
+							<p class="follow-me-icons">
+								<a href="#"><i class="fa fa-twitter "
+									style="font-size: 36px; color: #00aced"></i></a> <a href="#"><i
+									class="fa fa-linkedin "
+									style="font-size: 36px; color: dark blue"></i></a> <a href="#"><i
+									class="fa fa-github  " style="font-size: 36px; color: purple"></i></a>
+								<a href="#"><i class="fa fa-facebook"
+									style="font-size: 36px; color: blue"></i></a>
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 widget">
+						<h3 class="widget-title">About Bloggers Adda</h3>
+						<div class="widget-body">
+							<p style="text-align: justify;">
+								Bloggers Adda is a leading Skills and Talent Development
+								Corporation that is building a  manpower <br /> pool for global
+								industry requirements.<br /> The company, which was set up in
+								1981 to help the nascent IT industry overcome its human resource
+								challenges, today ranks among the world’s leading training
+								companies owing to its vast, yet comprehensive array of talent
+								development programs. <br />With a footprint across 40 nations,
+								Bloggers Adda offers training and development solutions to
+								Individuals,Enterprises and Institutions.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- <br/><br/> -->
+	
+	
+		<div class="footer2">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-offset-3 col-md-2">
+						<p class="simplenav">Chat Book, Gurugram</p>
+					</div>
+
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p>
+								Copyright &copy; 2017, Designed By : Rahul Saini <a
+									href="#/home" rel="designer">(CHATBOOK)</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+
+
+
+</body>
+</html>
+

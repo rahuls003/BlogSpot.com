@@ -1,0 +1,20 @@
+<div class="container" ng-controller="JobController as ctrl">
+
+	<div class="form-group">
+		ID :<label>{{selectedJob.id}}</label> <br> 
+		Title: <label>{{selectedJob.title}}</label>
+		Date :<label>{{selectedJob.dateTime}}</label> <br> <br>
+		Description :<label>{{selectedJob.description}}</label>
+		Qualification :<label>{{selectedJob.qualification}}</label>
+		
+		<button type="button"  ng-click="ctrl.applyForJob(selectedJob.id)" 
+			       class="btn btn-warning btn-sm">Apply for job</button>
+
+		
+
+		<button type="button"
+			       class="btn btn-info btn-sm"><a href="/ZChatFrontEnd/#!/listjob">All Jobs</a></button>
+
+	</div>
+
+</div>

@@ -1,0 +1,68 @@
+
+
+<div ng-controller="FriendController as ctrl">
+	<div ng-repeat="friend in ctrl.friends">
+
+
+		<div ng-show="friend.isOnline=='Y'">
+
+			<a data-target="#myModal" data-toggle="modal" class="MainNavText" data-id={{friend.friendID}}
+				id="MainNavHelp"> <span class="glyphicon glyphicon-user "
+				style="color: green"></span> {{friend.friendID}}
+			</a>
+
+		</div>
+
+		<div ng-show="friend.isOnline=='N'">
+			<a data-target="#myModal" data-toggle="modal" class="MainNavText" data-id={{friend.friendID}}
+				id="MainNavHelp"> <span class="glyphicon glyphicon-user "
+				style="color: gray"></span> {{friend.friendID}}
+			</a>
+
+		</div>
+	</div>
+
+
+</div>
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-sm">
+
+		Modal content
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Private Chat</h4>
+			</div>
+			<div class="modal-body">
+				<div ng-controller="ChatController" class="container">
+
+					<p ng-repeat="message in messages | orderBy:'time':false"
+						class="message">
+						<time>{{message.time | date:'HH:mm'}}</time>
+						<span> {{message.message}} </span>
+					</p>
+
+					<form ng-submit="addMessage(friendID)" name="messageForm">
+						<input type="textarea" rows="4" cols="100"
+							placeholder="new message..." ng-model="message" /><br>
+							<input type="text" ng-model="friendID" value="abbas"> 
+						<button>Send</button>
+					</form>
+					<hr />
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+
