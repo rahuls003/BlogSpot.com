@@ -1,0 +1,16 @@
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\model\BaseDomain.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\config\AppInitializer.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\dao\FriendDAOImpl.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\util\FileUtil.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\config\DBConfig.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\dao\JobDAOImpl.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\model\Job.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\controller\FriendController.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\model\User.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\model\Friend.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\config\WebConfig1.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\model\JobApplication.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\controller\FileUploadController.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\controller\JobController1.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\dao\UserDAOImpl.java
+D:\WORKSPACE\ZChatBackEnd\src\main\java\com\niit\controller\UserController.java
